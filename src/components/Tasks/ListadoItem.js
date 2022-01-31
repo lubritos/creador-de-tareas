@@ -1,8 +1,11 @@
 const ListadoItem = ({nombre}) => {
-    return (  
-        <div key={nombre}>
-            <h2>{nombre}</h2>
-        </div>
+    return (
+        <button key={nombre} 
+            type="button" 
+            className="list-group-item list-group-item-action" 
+            aria-current="true">
+            {nombre}
+        </button>
     );
 }
 
