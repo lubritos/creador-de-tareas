@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Search from "../components/Search/Search";
+import ListadoItem from "../components/Tasks/ListadoItem";
 import ListadoTasks from "../components/Tasks/ListadoTasks";
 
 const Home =()=>{
@@ -15,11 +18,17 @@ const Home =()=>{
             nombre:'pintar mueble'
         }
     ];
+    const [busqueda, setBusqueda]= useState(listado)
+    const buscador = (valor)=>{
+        const tareasFiltradas = listado.filter((tarea) => tarea.nombre.includes(valor));
+        setBusqueda(tareasFiltradas);
+    };
 
     return (
         <div>
             <h1>pagina home</h1>
-            <ListadoTasks listado={listado} />
+            <Search search={buscador}/>
+            <ListadoTasks listado={busqueda} />
         </div>
     )
 }
