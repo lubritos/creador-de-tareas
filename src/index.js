@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TaskListContextProvider from './context/TasksContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TaskListContextProvider>
+      <App />
+    </TaskListContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

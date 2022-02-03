@@ -1,34 +1,29 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Modal from "../components/Modal/Modal";
 import Search from "../components/Search/Search";
-import ListadoItem from "../components/Tasks/ListadoItem";
 import ListadoTasks from "../components/Tasks/ListadoTasks";
+import { taksListContext } from "../context/TasksContext";
 
 const Home =()=>{
-    const listado = [
-        {
-            nombre:'cortar el pasto'
-        },
-        {
-            nombre:'limpiar la pileta'
-        },
-        {
-            nombre:'pasear al perro'
-        },
-        {
-            nombre:'pintar mueble'
-        }
-    ];
-    const [busqueda, setBusqueda]= useState(listado)
+    const {tasks} = useContext(taksListContext)
+    const [busqueda, setBusqueda]= useState(tasks)
+    const [modal, setModal]= useState(false)
+        
     const buscador = (valor)=>{
-        const tareasFiltradas = listado.filter((tarea) => tarea.nombre.includes(valor));
+        const tareasFiltradas = tasks.filter((tarea) => tarea.nombre.includes(valor));
         setBusqueda(tareasFiltradas);
     };
+
+    useEffect(() => {
+        console.log(tasks);
+    }, [setModal, tasks])
 
     return (
         <div>
             <h1>pagina home</h1>
-            <Search search={buscador}/>
-            <ListadoTasks listado={busqueda} />
+            <Search search={buscador} setModal={setModal}/>
+            <ListadoTasks listado={tasks} />
+            <Modal showModal={modal} setModal={setModal}/>
         </div>
     )
 }

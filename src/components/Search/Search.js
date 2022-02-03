@@ -1,11 +1,11 @@
-const Search =({search})=>{
+const Search =({search, setModal})=>{
     function handleChange(event) {
         search(event.target.value)
     }
     return (
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
-                    <form className="d-flex">
+                    <div className="d-flex">
                         <input 
                         className="form-control me-2" 
                         type="search" 
@@ -13,8 +13,9 @@ const Search =({search})=>{
                         aria-label="Search"
                         onChange={handleChange}
                         />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                        <button className="btn btn-outline-success"
+                        onClick={()=>setModal(true)}>Nuevo</button>
+                    </div>
                 </div>
             </nav>
     )
