@@ -1,16 +1,18 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { taksListContext } from "../../context/TasksContext";
 
 const Modal = ({showModal, setModal}) => {
-    const {addTask} = useContext(taksListContext)
+    const inputRef = useRef(null);
+    const {tasks, addTask} = useContext(taksListContext)
+
     function onSubmit(event) {
-        console.log(event.target[1].value);
-        addTask(event.target[1].value);
+        addTask(tasks.length + 1, event.target[1].value);
+        setModal(false);
+        inputRef.current.value = '';
         event.preventDefault();
     }
     return ( 
         <form onSubmit={onSubmit}>
-
             <div className="modal fade show" 
                 id="exampleModal"
                 aria-labelledby="exampleModalLabel"
@@ -29,9 +31,8 @@ const Modal = ({showModal, setModal}) => {
                         </div>
                         <div className="modal-body">                           
                             <div className="mb-3">
-                                
-                                    <label className="col-form-label">Tarea:</label>
-                                    <input type="text" className="form-control" id="task-name"/>
+                                <label className="col-form-label">Tarea:</label>
+                                <input type="text" ref={inputRef} className="form-control" id="task-name"/>
                             </div>                            
                         </div>
                         <div className="modal-footer">
