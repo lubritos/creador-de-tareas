@@ -15,14 +15,14 @@ const Home =()=>{
     };
 
     useEffect(() => {
-        console.log(tasks);
+        setBusqueda(tasks)
     }, [setModal, tasks])
 
     return (
         <div>
             <h1>pagina home</h1>
             <Search search={buscador} setModal={setModal}/>
-            <ListadoTasks listado={tasks} />
+            <ListadoTasks listado={busqueda} />
             <Modal showModal={modal} setModal={setModal}/>
         </div>
     )
