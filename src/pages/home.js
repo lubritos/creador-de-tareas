@@ -15,7 +15,7 @@ const Home =()=>{
     };
 
     useEffect(() => {
-        setBusqueda(tasks)
+        setBusqueda(tasks);
     }, [setModal, tasks])
 
     return (

@@ -5,24 +5,28 @@ export const taksListContext = createContext()
 
 const TaskListContextProvider = ({children})=>{
     const InitialState = [
-        {
+        {   
+            id: 1,
             nombre:'cortar el pasto'
         },
         {
+            id: 2,
             nombre:'limpiar la pileta'
         },
         {
+            id: 3,
             nombre:'pasear al perro'
         },
         {
+            id:4,
             nombre:'pintar mueble'
         }
     ];
     const [tasks, setTasks] = useState(InitialState);
     const [editItem, setEditItem] = useState(null);
 
-    const addTask = title => {
-        setTasks([...tasks,{nombre: title}]);
+    const addTask = (id, title) => {
+        setTasks([...tasks,{id: id, nombre: title}]);
     };
 
     const removeTask = id => {

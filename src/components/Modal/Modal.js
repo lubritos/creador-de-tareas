@@ -3,10 +3,10 @@ import { taksListContext } from "../../context/TasksContext";
 
 const Modal = ({showModal, setModal}) => {
     const inputRef = useRef(null);
-    const {addTask} = useContext(taksListContext)
+    const {tasks, addTask} = useContext(taksListContext)
+
     function onSubmit(event) {
-        console.log(event.target[1].value);
-        addTask(event.target[1].value);
+        addTask(tasks.length + 1, event.target[1].value);
         setModal(false);
         inputRef.current.value = '';
         event.preventDefault();

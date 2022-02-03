@@ -5,7 +5,7 @@ const ListadoTasks = ({listado}) => {
         <div className="list-group">
             {listado.map(tarea=>{
                 return (
-                    <ListadoItem key={tarea.nombre} {...tarea} />
+                    <ListadoItem key={tarea.id} {...tarea} />
                 )
             })}
         </div>
