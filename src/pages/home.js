@@ -8,6 +8,7 @@ const Home =()=>{
     const {tasks, removeTask} = useContext(taksListContext)
     const [busqueda, setBusqueda]= useState(tasks)
     const [modal, setModal]= useState(false)
+    const [itemId, setItemId]=useState('')
         
     const buscador = (valor)=>{
         const tareasFiltradas = tasks.filter((tarea) => tarea.nombre.includes(valor));
@@ -18,9 +19,14 @@ const Home =()=>{
         removeTask(id);
     }
 
+    function handleEdit(id){
+        setModal(true);
+        setItemId(id);
+    }
+
     useEffect(() => {
         setBusqueda(tasks);
-    }, [setModal, tasks])
+    }, [setModal, tasks, itemId])
 
     return (
         <div className="d-flex justify-content-center m-5 p-3">
@@ -28,8 +34,8 @@ const Home =()=>{
                 <h1 className="title m-3">ToDo List</h1>
                 <Search search={buscador} setModal={setModal}/>
                 <div className="mb-3" />
-                <ListadoTasks listado={busqueda} handleDelete={handleDelete}/>
-                <Modal showModal={modal} setModal={setModal}/>
+                <ListadoTasks listado={busqueda} handleDelete={handleDelete} handleEdit={handleEdit}/>
+                <Modal showModal={modal} setModal={setModal} itemId={itemId}/>
             </div>
         </div>
     )

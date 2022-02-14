@@ -1,19 +1,31 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { taksListContext } from "../../context/TasksContext";
 
-const Modal = ({showModal, setModal}) => {
+const Modal = ({showModal, setModal, itemId}) => {
     const inputRef = useRef(null);
-    const {tasks, addTask} = useContext(taksListContext)
+    // const [value, setValue] =useState('');
+    const {tasks, addTask, editTask} = useContext(taksListContext)
 
     function onSubmit(event) {
-        addTask(tasks.length + 1, event.target[1].value);
+        if(itemId) {
+            editTask(event.target[1].value, itemId);
+        } else {
+            addTask(tasks.length + 1, event.target[1].value);
+        }
         setModal(false);
         inputRef.current.value = '';
         event.preventDefault();
     }
+
+    useEffect (()=>{
+        if(itemId) {
+            const task = tasks.filter((task) => task.id === itemId)
+            inputRef.current.value = task[0].nombre;
+        }
+    }, [itemId])
+
     return (
         <>
-
             <form onSubmit={onSubmit}>
                 <div className="modal fade show align-items-center" 
                     id="exampleModal"
