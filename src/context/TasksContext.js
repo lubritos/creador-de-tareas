@@ -41,7 +41,7 @@ const TaskListContextProvider = ({children})=>{
     };
 
     const editTask = (title , id)=>{
-        const newTask = tasks.map((task) => task.id === id ? {title, id} : task);
+        const newTask = tasks.map((task) => task.id === id ? {nombre: title, id} : task);
         setTasks(newTask);
         setEditItem(null);
     };
