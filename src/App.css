@@ -15,6 +15,11 @@
 .c-grey {
   color: #505050dc;
 }
+.form-control:focus {
+  border-color: #b1b6bd;
+  box-shadow: none;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
