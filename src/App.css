@@ -6,6 +6,15 @@
   height: 40vmin;
   pointer-events: none;
 }
+.title {
+  font-family: 'Fira Sans', sans-serif;
+}
+.name-task {
+  font-family: 'Baloo 2', cursive;
+}
+.c-grey {
+  color: #505050dc;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -5,7 +5,7 @@ import ListadoTasks from "../components/Tasks/ListadoTasks";
 import { taksListContext } from "../context/TasksContext";
 
 const Home =()=>{
-    const {tasks} = useContext(taksListContext)
+    const {tasks, removeTask} = useContext(taksListContext)
     const [busqueda, setBusqueda]= useState(tasks)
     const [modal, setModal]= useState(false)
         
@@ -14,16 +14,23 @@ const Home =()=>{
         setBusqueda(tareasFiltradas);
     };
 
+    function handleDelete(id){
+        removeTask(id);
+    }
+
     useEffect(() => {
         setBusqueda(tasks);
     }, [setModal, tasks])
 
     return (
-        <div>
-            <h1>pagina home</h1>
-            <Search search={buscador} setModal={setModal}/>
-            <ListadoTasks listado={busqueda} />
-            <Modal showModal={modal} setModal={setModal}/>
+        <div className="d-flex justify-content-center m-5 p-3">
+            <div className="d-flex justify-content-center flex-column w-50">
+                <h1 className="title m-3">ToDo List</h1>
+                <Search search={buscador} setModal={setModal}/>
+                <div className="mb-3" />
+                <ListadoTasks listado={busqueda} handleDelete={handleDelete}/>
+                <Modal showModal={modal} setModal={setModal}/>
+            </div>
         </div>
     )
 }
