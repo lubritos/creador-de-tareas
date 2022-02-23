@@ -1,9 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { taksListContext } from "../../context/TasksContext";
 
 const Modal = ({showModal, setModal, itemId}) => {
     const inputRef = useRef(null);
-    // const [value, setValue] =useState('');
     const {tasks, addTask, editTask} = useContext(taksListContext)
 
     function onSubmit(event) {
@@ -20,9 +19,11 @@ const Modal = ({showModal, setModal, itemId}) => {
     useEffect (()=>{
         if(itemId) {
             const task = tasks.filter((task) => task.id === itemId)
-            inputRef.current.value = task[0].nombre;
+            if (task.length) {
+                inputRef.current.value = task[0].nombre;
+            }
         }
-    }, [itemId])
+    })
 
     return (
         <>
